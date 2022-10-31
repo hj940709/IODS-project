@@ -11,3 +11,12 @@ date()
 ```
 The text continues here.
 
+
+
+I mostly work with Python nowadays and was using R shortly some time ago. I suppose one of most "challenging" problems for me in this course will probably be debugging in R.
+
+My main goal of this course is to improve my visualization skills. Also, it is always good to review some basic knowledge about data science including regression and clustering, as well as review some common function call in R.
+
+
+
+The repo of this course dairy can be found in `https://github.com/hj940709/IODS-project`
