@@ -24,7 +24,7 @@ str(learning2014)
 ```
 
 
-This is a dataset collected from an exam. It has 166 observations (row) and 7 variables (col). The variables are `gender`, `age`, `attitude`, `deep`, `surf`, `stra`, and `points`. The value of these variables are mostly numbers, either interger or float, except gender, which is filled with two types of character: "F" and "M". 
+This is a dataset collected from an exam. It has 166 observations (row) and 7 variables (col). The variables are `gender`, `age`, `attitude`, `deep`, `surf`, `stra`, and `points`. The value of these variables are mostly numbers, either integer or float, except gender, which is filled with two types of characters: "F" and "M". 
 
 ```{r}
 
@@ -34,7 +34,7 @@ p
 
 ```
 
-With the code above, we are able to display the correlation between variables. As what we can see from the figure, `attitude` and `points` have the most significant correlation. I suppose this makes sense in general.  `deep` and `surf` for some reason also have a strong correlation but it is a negative correlation.
+With the code above, we are able to display the correlation between variables. As we can see from the figure, `attitude` and `points` have the most significant correlation. I suppose this makes sense in general.  `deep` and `surf` for some reason also has a strong correlation but it is a negative correlation.
 
 
 ```{r}
@@ -47,13 +47,13 @@ summary(model)
 ```
 
 <!--Explain and interpret the statistical test related to the model parameters-->
-As what is shown in the previous figure, I select `attitude`, `stra` and `surf` to be the explanatory variable. The test of this model shows that the residual roughly follow the normal distribution, where the mean is around 0.5. 
+As what is shown in the previous figure, I select `attitude`, `stra` and `surf` to be the explanatory variable. The test of this model shows that the residual roughly follows the normal distribution, where the mean is around 0.5. 
 
 
 <!-- Using a summary of your fitted model, explain the relationship between the chosen explanatory variables and the target variable (interpret the model parameters). Explain and interpret the multiple R-squared of the model. -->
-The summary of this model shows that `attitude` is the most significant variable in this model (Pr=1.93e-08), while the other two are less significant (Pr>0.01). This aligns with the coefficients of these three explanatory variables, where the coefficients of  `attitude` is of the highest aboslute value.
+The summary of this model shows that `attitude` is the most significant variable in this model (Pr=1.93e-08), while the other two are less significant (Pr>0.01). This aligns with the coefficients of these three explanatory variables, where the coefficient of  `attitude` is the highest absolute value.
 
-The multiple R-squared of this model is 0.207. It is not a high value, which suggests the model is not fully explainable by `attitude`, `stra` and `surf`. Considering I am using explanatory variables that are most correlated with `points`, it means we either need to consider a more complicated model rather than simple linear regression or there are other missing explanatory variables that are not available from the dataset.
+The multiple R-squared of this model is 0.207. It is not a high value, which suggests the model is not fully explainable by `attitude`, `stra`, and `surf`. Considering I am using explanatory variables that are most correlated with `points`, it means we either need to consider a more complicated model rather than simple linear regression or there are other missing explanatory variables that are not available from the dataset.
 
 ```{r}
 par(mfrow = c(2,2))
@@ -62,8 +62,8 @@ plot(model, which = c(1, 2, 5))
 
 <!-- Produce the following diagnostic plots: Residuals vs Fitted values, Normal QQ-plot and Residuals vs Leverage. Explain the assumptions of the model and interpret the validity of those assumptions based on the diagnostic plots. -->
 
-The assumption of simple linear model is that all explanatory variables follow a linear pattern with the target variable.
-* Residuals vs Fitted: From this plot we can see the red curve fluctuate around the perfect horizontal line. Scatter dot #35, #56 and #145 seems to be outliers in this plot.
-* Normal QQ-plot: In this plot we can see the majority of the dots fall along the straight diagnol line. There are a small number of observations that are deviate from the line. #35, #56 and #145 seem to be deviate the most. We can claim that residual mostly follows the normal distribution.
+The assumption of the simple linear model is that all explanatory variables follow a linear pattern with the target variable.
+* Residuals vs Fitted: From this plot, we can see the red curve fluctuate around the perfect horizontal line. Scatter dots #35, #56 and #145 seem to be outliers in this plot.
+* Normal QQ-plot: In this plot, we can see the majority of the dots fall along the straight diagonal line. There are a small number of observations that deviate from the line. #35, #56, and #145 seem to deviate the most. We can claim that the residual mostly follows the normal distribution.
 * Residuals vs Leverage: This plot is supposed to show influential observations according to Cook's distance. However, I don't there is a curve for this metric. I suppose it means there aren't any influential observations in this dataset.
-In conclusion, even though the model is not fully explainable by `attitude`, `stra` and `surf`. The plots here suggest it is still appoperaite to assume these explanatory variable follows linear pattern in terms of the target variable.
+In conclusion, even though the model is not fully explainable by `attitude`, `stra`, and `surf`. The plots here suggest it is still appropriate to assume these explanatory variables follow a linear patterns in terms of the target variable.
