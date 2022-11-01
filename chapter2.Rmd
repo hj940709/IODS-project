@@ -55,15 +55,27 @@ The summary of this model shows that `attitude` is the most significant variable
 
 The multiple R-squared of this model is 0.207. It is not a high value, which suggests the model is not fully explainable by `attitude`, `stra`, and `surf`. Considering I am using explanatory variables that are most correlated with `points`, it means we either need to consider a more complicated model rather than simple linear regression or there are other missing explanatory variables that are not available from the dataset.
 
-```{r}
-par(mfrow = c(2,2))
-plot(model, which = c(1, 2, 5))
-```
-
 <!-- Produce the following diagnostic plots: Residuals vs Fitted values, Normal QQ-plot and Residuals vs Leverage. Explain the assumptions of the model and interpret the validity of those assumptions based on the diagnostic plots. -->
 
 The assumption of the simple linear model is that all explanatory variables follow a linear pattern with the target variable.
+
+
 * Residuals vs Fitted: From this plot, we can see the red curve fluctuate around the perfect horizontal line. Scatter dots #35, #56 and #145 seem to be outliers in this plot.
+```{r}
+plot(model, which = 1)
+```
+
+
 * Normal QQ-plot: In this plot, we can see the majority of the dots fall along the straight diagonal line. There are a small number of observations that deviate from the line. #35, #56, and #145 seem to deviate the most. We can claim that the residual mostly follows the normal distribution.
+```{r}
+plot(model, which = 2)
+```
+
+
 * Residuals vs Leverage: This plot is supposed to show influential observations according to Cook's distance. However, I don't there is a curve for this metric. I suppose it means there aren't any influential observations in this dataset.
+```{r}
+plot(model, which = 5)
+```
+
+
 In conclusion, even though the model is not fully explainable by `attitude`, `stra`, and `surf`. The plots here suggest it is still appropriate to assume these explanatory variables follow a linear patterns in terms of the target variable.
