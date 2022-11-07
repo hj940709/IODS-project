@@ -159,7 +159,6 @@ test_losses <- c()
 
 for( i in num_predictors){
     predictors <- all_predictors[1:i]
-    print(predictors)
     f <- as.formula(paste('high_use', paste(predictors, collapse = ' + '), sep = ' ~ '))
     glm <- glm(f, data = alc, family = "binomial")
     alc <- mutate(alc, probability = predict(glm, type = "response"))
@@ -178,6 +177,7 @@ df = data.frame(num_predictors, train_losses, test_losses)
 ggplot(df, aes(num_predictors)) +                    # basic graphical object
   geom_line(aes(y=train_losses, colour="Train")) +  # first layer
   geom_line(aes(y=test_losses, colour="Test")) +  # second layer
-  scale_color_manual(name = "Losses", values = c("Train" = "darkblue", "Test" = "red"))
+  scale_color_manual(name = "Losses", values = c("Train" = "darkblue", "Test" = "red")) + 
+  ylab("Loss")
 ```
 
