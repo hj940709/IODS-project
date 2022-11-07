@@ -57,7 +57,7 @@ The multiple R-squared of this model is 0.207. It is not a high value, which sug
 
 <!-- Produce the following diagnostic plots: Residuals vs Fitted values, Normal QQ-plot and Residuals vs Leverage. Explain the assumptions of the model and interpret the validity of those assumptions based on the diagnostic plots. -->
 
-The assumption of the simple linear model is that all explanatory variables follow a linear pattern with the target variable.
+The assumption of the simple linear model is that all explanatory variables follow a linear relationship with the target variable. The observations and residual should be independent. The residual should also follow the normal distribution. 
 
 
 * Residuals vs Fitted: From this plot, we can see the red curve fluctuate around the perfect horizontal line. Scatter dots #35, #56 and #145 seem to be outliers in this plot.
