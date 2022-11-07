@@ -152,13 +152,14 @@ Super-Bonus: Perform cross-validation to compare the performance of different lo
 
 ```{r}
 all_predictors <- rev(c('goout', 'absences', 'failures', 'famrel', 'health', 'sex'))
-num_predictors <- 1:length(all_predictors)
+num_predictors <- length(all_predictors):1
 
 train_losses <- c()
 test_losses <- c()
 
 for( i in num_predictors){
     predictors <- all_predictors[1:i]
+    print(predictors)
     f <- as.formula(paste('high_use', paste(predictors, collapse = ' + '), sep = ' ~ '))
     glm <- glm(f, data = alc, family = "binomial")
     alc <- mutate(alc, probability = predict(glm, type = "response"))
