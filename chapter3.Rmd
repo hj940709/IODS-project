@@ -109,6 +109,9 @@ Using the variables which, according to your logistic regression model, had a st
 -->
 ```{r}
 
+alc <- mutate(alc, probability = predict(model, type = "response"))
+alc <- mutate(alc, prediction = probability > 0.5)
+
 g <- ggplot(alc, aes(x = high_use, y = probability, col = prediction))
 g + geom_point()
 
@@ -120,8 +123,7 @@ loss_func <- function(class, prob) {
   mean(n_wrong)
 }
 
-alc <- mutate(alc, probability = predict(model, type = "response"))
-alc <- mutate(alc, prediction = probability > 0.5)
+
 
 loss_func(class = alc$high_use, prob = alc$prediction)
 loss_func(class = alc$high_use, prob = runif(nrow(alc), 0, 1) > 0.5) # Random guessing
