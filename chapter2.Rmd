@@ -34,7 +34,7 @@ p
 
 ```
 
-With the code above, we are able to display the correlation between variables. As we can see from the figure, `attitude` and `points` have the most significant correlation. I suppose this makes sense in general.  `deep` and `surf` for some reason also has a strong correlation but it is a negative correlation.
+With the code above, we are able to display the correlation between variables. As we can see from the figure, `attitude` and `points` have the most significant correlation. I suppose this makes sense in general.  Both `stra` and `surf` also have a strong correlation but `surf` has a negative correlation.
 
 
 ```{r}
