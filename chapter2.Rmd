@@ -45,11 +45,13 @@ summary(model)
 
 ```
 
-<!--Explain and interpret the statistical test related to the model parameters-->
-As what is shown in the previous figure, I select `attitude`, `stra` and `surf` to be the explanatory variable. The test of this model shows that the residual roughly follows the normal distribution, where the mean is around 0.5. 
+<!-- Show a summary of the fitted model and comment and interpret the results. Explain and interpret the statistical test related to the model parameters-->
+As what is shown in the previous figure, I select `attitude`, `stra` and `surf` to be the explanatory variable. According to the summary, the coefficient for `attitude`, `stra` and `surf` is  3.3952, 0.8531 and -0.5861 respectively. The intercept of this model is 11.0171. 
+
+The test of this model shows that the residual is distributed within -17.1550 and 10.9852 and the mean of residual is 0.5156. 
+
 
 ## Explain and interpret the multiple R-squared of the model
-
 <!-- Using a summary of your fitted model, explain the relationship between the chosen explanatory variables and the target variable (interpret the model parameters). Explain and interpret the multiple R-squared of the model. -->
 The summary of this model shows that `attitude` is the most significant variable in this model (Pr=1.93e-08), while the other two are less significant (Pr>0.01). This aligns with the coefficients of these three explanatory variables, where the coefficient of  `attitude` is the highest absolute value.
 
