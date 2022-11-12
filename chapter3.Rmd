@@ -34,6 +34,8 @@ https://raw.githubusercontent.com/KimmoVehkalahti/Helsinki-Open-Data-Science/mas
 (In the above linked file, the column separator is a comma and the first row includes the column names). Print out the names of the variables in the data and describe the data set briefly, assuming the reader has no previous knowledge of it.
 -->
 
+## Load data
+
 ```{r}
 
 alc <- read_csv('data/alc.csv')
@@ -44,7 +46,7 @@ glimpse(alc)
 
 This is a dataset combined from two open dataset, which are both collected from two Portuguese schools by school reports and questionnaires. The dataset `alc` contains 370 observations (rows) with 35 variables (columns), which have been printed out above. 
 
-
+## 4 variables and hypotheses
 <!-- 
 The purpose of your analysis is to study the relationships between high/low alcohol consumption and some of the other variables in the data. To do this, choose 4 interesting variables in the data and for each of them, present your personal hypothesis about their relationships with alcohol consumption. (0-1 point)
 -->
@@ -54,6 +56,7 @@ I would like to choose the following variables  to study their relationship with
 * goout: A student who going out more often with friends are more likely to be in a party or a similar situation. This means such a student may consume more alcohol.
 * famrel: Parents will usually guide their kids well and prevent them from bad lifestyle. But a student with a terrible family relationship may easily have some bad habits. One of the problems may be alcohol addiction.
 
+## Expore the distributions of my chosen variables and their relationships with alcohol consumption
 <!-- 
 Numerically and graphically explore the distributions of your chosen variables and their relationships with alcohol consumption (use for example cross-tabulations, bar plots and box plots). Comment on your findings and compare the results of your exploration to your previously stated hypotheses. (0-5 points)
 -->
@@ -84,6 +87,8 @@ ggplot(alc, aes(y = alc_use, x = famrel, group = famrel)) + geom_boxplot()
 
 This table shows a negative correlation between `famrel` and average `alc_use`, which suggests a worse family relationship can generally leads to more alcohol consumption. The box plot aligns with my hypothesis as well. Generally, the worse a `famrel` is, the higher value `alc_use` is distributed. Dispite the mean, upper quartile and upper whisker of the worst `famrel` box is lower than the second worst one, its lower  quatile is the highest, which may still suggest my hypothesis holds true.
 
+## Logistic regression
+
 <!-- 
 Use logistic regression to statistically explore the relationship between your chosen variables and the binary high/low alcohol consumption variable as the target variable. Present and interpret a summary of the fitted model. Present and interpret the coefficients of the model as odds ratios and provide confidence intervals for them. Interpret the results and compare them to your previously stated hypothesis. Hint: If your model includes factor variables see for example the RHDS book or the first answer of this stackexchange thread on how R treats and how you should interpret these variables in the model output (or use some other resource to study this). (0-5 points)
 -->
@@ -103,6 +108,8 @@ cbind(OR, CI)
 ```
 
 According to the odd ratio tables, we can see that `goout` has a strong positive connection with `high_use` (OR > 2), while `famrel` has a strong negative relationship with `high_use` (OR < 1). `age` and `freetime` also have a positive relationship with `high_use`. But they are less significant as `goout`. This suggests my previous hypothesis generally holds true
+
+## Explore the predictive power of my model
 
 <!-- 
 Using the variables which, according to your logistic regression model, had a statistical relationship with high/low alcohol consumption, explore the predictive power of you model. Provide a 2x2 cross tabulation of predictions versus the actual values and optionally display a graphic visualizing both the actual values and the predictions. Compute the total proportion of inaccurately classified individuals (= the training error) and comment on all the results. Compare the performance of the model with performance achieved by some simple guessing strategy. (0-3 points)
@@ -132,7 +139,7 @@ loss_func(class = alc$high_use, prob = runif(nrow(alc), 0, 1) > 0.5) # Random gu
 
 The training error is 24.6%, which is lower than fliping a coin without any proof and guessing 1 for all observations. This means the variables I selected and the model I trained are effective. However, guessing 0 for all achieves 30% error rate, which is close to my result. This suggest the data itself is not balanced, but it also makes sense because high school students are generally less likely to have a drinking problem.
 
-
+## Bonus: 10-fold cross-validation
 <!-- 
 Bonus: Perform 10-fold cross-validation on your model. Does your model have better test set performance (smaller prediction error using 10-fold cross-validation) compared to the model introduced in the Exercise Set (which had about 0.26 error). Could you find such a model? 
 -->
@@ -144,6 +151,8 @@ cv$delta[1]
 ```
 
 I replaced the two least significant variables in my initial model with the two most significant variables in the model introduced in the Exercise Set. The result is slightly better than the result in Exercise Set
+
+## Super-Bonue: Compare the performance of different logistic regression models
 
 <!-- 
 Super-Bonus: Perform cross-validation to compare the performance of different logistic regression models (= different sets of predictors). Start with a very high number of predictors and explore the changes in the training and testing errors as you move to models with less predictors. Draw a graph displaying the trends of both training and testing errors by the number of predictors in the model.
