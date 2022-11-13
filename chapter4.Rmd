@@ -31,6 +31,7 @@ This is the Boston dataset coming from MASS package of R. The dataset records th
 cor_matrix <- cor(Boston) %>% round(digits=2)
 corrplot(cor_matrix, method="circle", type="upper", cl.pos="b", tl.pos="d", tl.cex=0.6)
 ```
+
 The plot above is a visualization of the correlation matrix of variables in the Boston dataset. The plot summarize the interrelationship among all the variables of the dataset. As what we can see from the plot, most of variables are more or less correlated with each other, except `chas`. It seems `chas` is independant from the rest of variables. `indus` is probably the variable with the most correlation with other variables (except `chas`). It has a strong positive correlation with `nox` and a stong negative correlation with `dis`.
 
 ## Standardize the dataset and scaled data summary
@@ -91,6 +92,7 @@ lda.pred <- predict(lda.fit, newdata = test)
 # cross tabulate the results
 table(correct = correct_classes, predicted = lda.pred$class)
 ```
+
 It seems the LDA model runs quite well on the test set, where most of observations are classified into the correct categories. The error rate of this LDA is around 23% 
 
 ## K-means
