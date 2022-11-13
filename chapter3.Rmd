@@ -9,7 +9,7 @@
 
 ```{r}
 date()
-
+set.seed(0)
 
 ```
 
@@ -44,7 +44,13 @@ glimpse(alc)
 
 ```
 
-This is a dataset combined from two open dataset, which are both collected from two Portuguese schools by school reports and questionnaires. The dataset `alc` contains 370 observations (rows) with 35 variables (columns), which have been printed out above. 
+This is a dataset combined from two open dataset, which are both collected from two Portuguese schools by school reports and questionnaires. The meta data of of the original dataset can be found from [here](https://archive.ics.uci.edu/ml/datasets/Student+Performance). Two extra variables has been added to the dataset `alc`:
+* `alc_use`: the average of `Dalc` and `Walc`
+* `high_use`: TRUE if `alc_use` is higher than 2 and FALSE otherwise
+
+Overall, the dataset `alc` contains 370 observations (rows) with 35 variables (columns), which have been printed out above. 
+
+
 
 ## 4 variables and hypotheses
 <!-- 

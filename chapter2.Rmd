@@ -3,7 +3,7 @@
 
 ```{r}
 date()
-
+set.seed(0)
 
 ```
 
@@ -20,7 +20,13 @@ str(learning2014)
 ```
 
 
-This is a dataset collected from an exam. It has 166 observations (row) and 7 variables (col). The variables are `gender`, `age`, `attitude`, `deep`, `surf`, `stra`, and `points`. The value of these variables are mostly numbers, either integer or float, except gender, which is filled with two types of characters: "F" and "M". 
+This is a dataset collected from an exam. It has 166 observations (row) and 7 variables (col). The variables are `gender`, `age`, `attitude`, `deep`, `surf`, `stra`, and `points`.
+I will skip the meaning of `gender`, `age`, `attitude` and `points` as their meanings are quite straightforward. The meaning of rest variables is listed as following below:
+* deep: Deep approach
+* surf: Surface approach
+* stra: Strategic approach 
+
+The value of these variables are mostly numbers, either integer or float, except gender, which is filled with two types of characters: "F" and "M". 
 
 ## Graphical overview and variable summary
 
