@@ -158,7 +158,7 @@ cv$delta[1]
 
 I replaced the two least significant variables in my initial model with the two most significant variables in the model introduced in the Exercise Set. The result is slightly better than the result in Exercise Set
 
-## Super-Bonue: Compare the performance of different logistic regression models
+## Super-Bonus: Compare the performance of different logistic regression models
 
 <!-- 
 Super-Bonus: Perform cross-validation to compare the performance of different logistic regression models (= different sets of predictors). Start with a very high number of predictors and explore the changes in the training and testing errors as you move to models with less predictors. Draw a graph displaying the trends of both training and testing errors by the number of predictors in the model.
