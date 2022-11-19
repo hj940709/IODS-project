@@ -1,0 +1,91 @@
+# Dimensionality reduction techniques
+
+```{r}
+date()
+set.seed(0)
+library(MASS)
+library(dplyr)
+library(tidyverse)
+library(corrplot)
+library(ggplot2)
+library(plotly)
+library(GGally)
+library(corrplot)
+library(FactoMineR)
+
+human <- read.csv('data/human.csv', row.names = 1)
+
+```
+
+
+## Graphical data overview
+<!--Show a graphical overview of the data and show summaries of the variables in the data. Describe and interpret the outputs, commenting on the distributions of the variables and the relationships between them. (0-3 points)-->
+```{r}
+ggpairs(human)
+cor(human) %>% corrplot(method="circle", type="upper", cl.pos="b", tl.pos="d", tl.cex=0.6)
+```
+
+The plots above are the graphical overview of the dataset. From the correlation plot, we can see a strong positive correlation between `Edu.Exp` and `Life.Exp`. This means people who lives in countries with longer life expectation tend to have a better education. The correlation between `Mat.Mor` and `Ado.Birth` are strong and positive as well, which suggests female who lives in countries with higher Maternal mortality ratio are also more likely to get pregnant in their adolescence. There are also strong negative correlations in this data such as `Life.Exp` and `Mat.Mor`, which makes sense as a higher mortality ratio naturally leads to a lower life expectancy on average.
+
+## PCA
+### PCA on non-standardized data
+<!--Perform principal component analysis (PCA) on the raw (non-standardized) human data. Show the variability captured by the principal components. Draw a biplot displaying the observations by the first two principal components (PC1 coordinate in x-axis, PC2 coordinate in y-axis), along with arrows representing the original variables. (0-2 points)-->
+
+```{r}
+pca_human <- prcomp(human)
+summary(pca_human)
+biplot(pca_human, choices = 1:2, cex = c(0.8, 1), col = c("grey40", "deeppink2"))
+```
+
+### PCA on standardized data
+<!-- Standardize the variables in the human data and repeat the above analysis. Interpret the results of both analysis (with and without standardizing). Are the results different? Why or why not? Include captions (brief descriptions) in your plots where you describe the results by using not just your variable names, but the actual phenomena they relate to. (0-4 points)  -->
+
+```{r}
+pca_human <- prcomp(scale(human))
+summary(pca_human)
+biplot(pca_human, choices = 1:2, cex = c(0.8, 1), col = c("grey40", "deeppink2"))
+```
+
+As we can see from the two plots above, their results are quite different. The first component of the PCA on non-standardized data captured 99% of the variance. We can infer from its biplot that the PC1 is mostly aligned with `GNI`, which means its variance will overwhelm the PCA if not standardized. This makes sense as the actual value of `GNI` is huge if compared with other variables.
+
+Inspecting the plot, we can see a much clearer picture of the data. `Edu.Exp`, `Edu2.PM`, `GNI` and `Life.Exp` have a very strong positive correlation among them, while they all have a strong negative correlation with both `Mat.Mor` and `Ado.Birth`. `Parli.F` and `Labo.FM` are strongly and positively correlated with each other but not very correlated with the rest of the variables.  This agrees with my previous correlation matrix visualization. 
+
+### interpretation of PCs
+
+<!-- Give your personal interpretations of the first two principal component dimensions based on the biplot drawn after PCA on the standardized human data. (0-2 points)  -->
+
+Inspecting the previous plot for PCA with standardized data, it is noticeable that PC1 is mostly related to how developed a country is. `Edu.Exp`, `Edu2.PM`,  `Life.Exp`, `Mat.Mor` and `Ado.Birth` evaluate if the people of a country have been taken good care of. Furthermore, `GNI` is a direct metric of the economics of a country.
+
+On the other hand, PC2 seems to be mostly related to female living situations. I think it confirms that females in a more developed country may have more working opportunities (`Labo.FM`) and better political right (`Parli.F`).
+
+
+## MCA
+<!-- Load the tea dataset from the package FactoMineR. Explore the data briefly: look at the structure and the dimensions of the data and visualize it. Then do Multiple Correspondence Analysis on the tea data (or on just certain columns of the data, it’s up to you!). Interpret the results of the MCA and draw at least the variable biplot of the analysis. You can also explore other plotting options for MCA. Comment on the output of the plots. (0-4 points)  -->
+
+I select the same columns and visualize them according to the Exercise Set, which means there are 6 variables in my dataset: `Tea`, `How`, `how`, `sugar`, `where`, `lunch`. The data is visualizd below:
+
+```{r}
+data(tea)
+str(tea)
+
+keep_columns <- c("Tea", "How", "how", "sugar", "where", "lunch")
+tea_time <- select(tea, keep_columns)
+
+summary(tea_time)
+
+pivot_longer(tea_time, cols = everything()) %>% 
+  ggplot(aes(value)) + facet_wrap("name", scales = "free") + geom_bar() + theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8))
+```
+
+
+```{r}
+mca <- MCA(tea_time, graph = FALSE)
+summary(mca)
+plot(mca, invisible=c("ind"),habillage = "quali")
+```
+
+MCA analyze qualitative data and place category in a euclidean space so that people can visualize pattern of different categories according to their euclidean distance. As we can see in the summary, MCA generated a 11D space, where the first two dimensions capture 15.238% and 14.232% of the total variance. 
+
+The plot of MCA visualized the relationships among different categories. Each color represents a variable. We can observe some interesting pattern from this plot:
+* People tend to put milk and suger when drinking Earl Grey but not put suger when drinking black tea.
+* People tend to buy tea bags from a chain store. But people are more likely to buy unpacked tea when shopping in a tea shop.

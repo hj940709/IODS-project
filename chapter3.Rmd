@@ -105,7 +105,7 @@ summary(model)
 
 ```
 
-As what the model summary shows, `goout` and `famrel` are the two most significant variables when predicting `high_use`. The p-value of these two variables are 6.38e-09 and 0.00199 respectively. The other two variables `age` and `freetime` are less significant.
+As what the model summary shows, `goout` and `famrel` are the two most significant variables when predicting `high_use`. The `Pr(>|t|)` of these two variables are 6.38e-09 and 0.00199 respectively. The other two variables `age` and `freetime` are less significant.
 
 ```{r}
 OR <- coef(model) %>% exp

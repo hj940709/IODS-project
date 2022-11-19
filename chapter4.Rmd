@@ -140,7 +140,7 @@ plot(lda.fit, dimen = 2, col = classes, pch = classes)
 lda.arrows(lda.fit, myscale = 1)
 ```
 
-The plot above is biplot of K-means clustering for Boston dataset in two dimensional space. The number of cluster is 3. It seems K-means cluster the dataset fairly well. According to the plot above, `tax` and `rad` are the most influential variables, where these two variables are almost independant to each other. 
+The plot above is biplot of K-means clustering for Boston dataset in two dimensional space. The number of cluster is 3. It seems K-means cluster the dataset fairly well. According to the plot above, `tax` and `rad` have more variation than the rest variables. Also, these two variables are almost independant to each other. 
 
 ## Super-Bonus: Visualize and compare LDA and K-means in 3D
 <!--Super-Bonus: Run the code below for the (scaled) train data that you used to fit the LDA. The code creates a matrix product, which is a projection of the data points.
