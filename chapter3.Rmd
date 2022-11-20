@@ -45,6 +45,7 @@ glimpse(alc)
 ```
 
 This is a dataset combined from two open dataset, which are both collected from two Portuguese schools by school reports and questionnaires. The meta data of of the original dataset can be found from [here](https://archive.ics.uci.edu/ml/datasets/Student+Performance). Two extra variables has been added to the dataset `alc`:
+
 * `alc_use`: the average of `Dalc` and `Walc`
 * `high_use`: TRUE if `alc_use` is higher than 2 and FALSE otherwise
 
@@ -57,6 +58,7 @@ Overall, the dataset `alc` contains 370 observations (rows) with 35 variables (c
 The purpose of your analysis is to study the relationships between high/low alcohol consumption and some of the other variables in the data. To do this, choose 4 interesting variables in the data and for each of them, present your personal hypothesis about their relationships with alcohol consumption. (0-1 point)
 -->
 I would like to choose the following variables  to study their relationship with alcohol consumption:
+
 * age: Adult students are legally allowed to buy and drink alcohol, while minors are not allowed.
 * freetime: A student who have more time after school may consume more alcohol
 * goout: A student who going out more often with friends are more likely to be in a party or a similar situation. This means such a student may consume more alcohol.
