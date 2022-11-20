@@ -59,10 +59,10 @@ The purpose of your analysis is to study the relationships between high/low alco
 -->
 I would like to choose the following variables  to study their relationship with alcohol consumption:
 
-* age: Adult students are legally allowed to buy and drink alcohol, while minors are not allowed.
-* freetime: A student who have more time after school may consume more alcohol
-* goout: A student who going out more often with friends are more likely to be in a party or a similar situation. This means such a student may consume more alcohol.
-* famrel: Parents will usually guide their kids well and prevent them from bad lifestyle. But a student with a terrible family relationship may easily have some bad habits. One of the problems may be alcohol addiction.
+* `age`: Adult students are legally allowed to buy and drink alcohol, while minors are not allowed.
+* `freetime`: A student who have more time after school may consume more alcohol
+* `goout`: A student who going out more often with friends are more likely to be in a party or a similar situation. This means such a student may consume more alcohol.
+* `famrel`: Parents will usually guide their kids well and prevent them from bad lifestyle. But a student with a terrible family relationship may easily have some bad habits. One of the problems may be alcohol addiction.
 
 ## Expore the distributions of my chosen variables and their relationships with alcohol consumption
 <!-- 
@@ -72,6 +72,7 @@ Numerically and graphically explore the distributions of your chosen variables a
 alc %>% group_by(age) %>% summarise(alcohol_consumption = mean(alc_use))
 ggplot(alc, aes(y = alc_use, x = age, group = age)) + geom_boxplot()
 ```
+
 The table above shows there are 7 groups from 15 years old to 22 years old in the dataset. From this table, we can see there is a positive correlation between age and average alcohol consumption, except age group 19 and 20. This is generally aligned with the box chart I made, which shows that the distribution of alcohol consumption goes up when students getting older. This means my hypothesis about age and alcohol consumption generally holds.
 
 ```{r}
