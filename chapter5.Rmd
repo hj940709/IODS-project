@@ -87,5 +87,6 @@ plot(mca, invisible=c("ind"),habillage = "quali")
 MCA analyze qualitative data and place category in a euclidean space so that people can visualize pattern of different categories according to their euclidean distance. As we can see in the summary, MCA generated a 11D space, where the first two dimensions capture 15.238% and 14.232% of the total variance. 
 
 The plot of MCA visualized the relationships among different categories. Each color represents a variable. We can observe some interesting pattern from this plot:
+
 * People tend to put milk and suger when drinking Earl Grey but not put suger when drinking black tea.
 * People tend to buy tea bags from a chain store. But people are more likely to buy unpacked tea when shopping in a tea shop.
