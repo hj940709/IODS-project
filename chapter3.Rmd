@@ -199,3 +199,4 @@ ggplot(df, aes(num_predictors)) +                    # basic graphical object
   ylab("Loss")
 ```
 
+As what we can see from the plot above, both training loss and test loss drop when there are more variables get involved. 

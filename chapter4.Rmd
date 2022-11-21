@@ -114,7 +114,9 @@ twcss <- sapply(1:k_max, function(k){kmeans(Boston, k)$tot.withinss})
 # visualize the results
 qplot(x = 1:k_max, y = twcss, geom = 'line')
 ```
+
 The plot above suggests the optimal number of clusters is 2, as WCSS drops the most at 2.
+
 ```{r}
 km <- kmeans(Boston, centers = 2)
 # plot the Boston dataset with clusters
