@@ -3,7 +3,7 @@
 
 ```{r}
 date()
-set.seed(0)
+
 library(MASS)
 library(dplyr)
 library(tidyverse)
@@ -61,7 +61,7 @@ test <- boston_scaled[-ind,]
 
 ## Fit an LDA and draw its biplot
 <!--Fit the linear discriminant analysis on the train set. Use the categorical crime rate as the target variable and all the other variables in the dataset as predictor variables. Draw the LDA (bi)plot. (0-3 points)-->
-```{r}
+```{r fig.width = 8, fig.height = 5}
 lda.fit <- lda(crime ~ ., data = train) # linear discriminant analysis
 
 # the function for lda biplot arrows
@@ -99,6 +99,7 @@ It seems the LDA model runs quite well on the test set, where most of observatio
 <!--Reload the Boston dataset and standardize the dataset (we did not do this in the Exercise Set, but you should scale the variables to get comparable distances). Calculate the distances between the observations. Run k-means algorithm on the dataset. Investigate what is the optimal number of clusters and run the algorithm again. Visualize the clusters (for example with the pairs() or ggpairs() functions, where the clusters are separated with colors) and interpret the results. (0-4 points)-->
 
 ```{r}
+set.seed(0)
 km <- kmeans(Boston, centers = 3)
 # plot the Boston dataset with clusters
 pairs(Boston, col = km$cluster)
