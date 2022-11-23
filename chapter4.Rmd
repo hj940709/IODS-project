@@ -3,7 +3,7 @@
 
 ```{r}
 date()
-
+set.seed(0)
 library(MASS)
 library(dplyr)
 library(tidyverse)
@@ -61,7 +61,7 @@ test <- boston_scaled[-ind,]
 
 ## Fit an LDA and draw its biplot
 <!--Fit the linear discriminant analysis on the train set. Use the categorical crime rate as the target variable and all the other variables in the dataset as predictor variables. Draw the LDA (bi)plot. (0-3 points)-->
-```{r fig.width = 8, fig.height = 5}
+```{r fig.width = 6, fig.height = 12}
 lda.fit <- lda(crime ~ ., data = train) # linear discriminant analysis
 
 # the function for lda biplot arrows
@@ -98,20 +98,20 @@ It seems the LDA model runs quite well on the test set, where most of observatio
 ## K-means
 <!--Reload the Boston dataset and standardize the dataset (we did not do this in the Exercise Set, but you should scale the variables to get comparable distances). Calculate the distances between the observations. Run k-means algorithm on the dataset. Investigate what is the optimal number of clusters and run the algorithm again. Visualize the clusters (for example with the pairs() or ggpairs() functions, where the clusters are separated with colors) and interpret the results. (0-4 points)-->
 
+I calculate the distances between the observations and the summary is printed below:
+
 ```{r}
-set.seed(0)
-km <- kmeans(Boston, centers = 3)
-# plot the Boston dataset with clusters
-pairs(Boston, col = km$cluster)
+
+data("Boston")
+boston_scaled <- as.data.frame(scale(Boston))
+dist_eu <- dist(boston_scaled) # Euclidean distance of Boston
+summary(dist_eu)
 ```
 
 ```{r}
-data("Boston")
-boston_scaled <- as.data.frame(scale(Boston))
-dist_eu <- dist(Boston) # Euclidean distance of Boston
 k_max <- 10
 # calculate the total within sum of squares
-twcss <- sapply(1:k_max, function(k){kmeans(Boston, k)$tot.withinss})
+twcss <- sapply(1:k_max, function(k){kmeans(boston_scaled, k)$tot.withinss})
 # visualize the results
 qplot(x = 1:k_max, y = twcss, geom = 'line')
 ```
@@ -119,9 +119,9 @@ qplot(x = 1:k_max, y = twcss, geom = 'line')
 The plot above suggests the optimal number of clusters is 2, as WCSS drops the most at 2.
 
 ```{r}
-km <- kmeans(Boston, centers = 2)
+km <- kmeans(boston_scaled, centers = 2)
 # plot the Boston dataset with clusters
-pairs(Boston, col = km$cluster)
+pairs(boston_scaled, col = km$cluster)
 ```
 
 The plot above shows how K-means cluster the dataset. Clusters are colored into red and black. It seems K-means works the best on `tax` and `rad`, as there is an obvious separation between two cluster.
