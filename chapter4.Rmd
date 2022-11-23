@@ -3,7 +3,7 @@
 
 ```{r}
 date()
-set.seed(0)
+set.seed(2)
 library(MASS)
 library(dplyr)
 library(tidyverse)
@@ -61,7 +61,7 @@ test <- boston_scaled[-ind,]
 
 ## Fit an LDA and draw its biplot
 <!--Fit the linear discriminant analysis on the train set. Use the categorical crime rate as the target variable and all the other variables in the dataset as predictor variables. Draw the LDA (bi)plot. (0-3 points)-->
-```{r fig.width = 6, fig.height = 12}
+```{r}
 lda.fit <- lda(crime ~ ., data = train) # linear discriminant analysis
 
 # the function for lda biplot arrows
@@ -81,6 +81,8 @@ plot(lda.fit, dimen = 2, col = classes, pch = classes)
 lda.arrows(lda.fit, myscale = 1)
 
 ```
+
+The biplot above illustrates an LDA trained with categorical crime rate as the target variable and all the other variables in the dataset as predictor variables. According to this plot, `rad` has the most variation. `zn` and `nox` have slightly more variation than other predictor variables.
 
 ## Validate LDA
 <!--Save the crime categories from the test set and then remove the categorical crime variable from the test dataset. Then predict the classes with the LDA model on the test data. Cross tabulate the results with the crime categories from the test set. Comment on the results. (0-3 points)-->
@@ -177,7 +179,7 @@ km = kmeans(model_predictors, centers = 2)
 plot_ly(x = matrix_product$LD1, y = matrix_product$LD2, z = matrix_product$LD3, type= 'scatter3d', mode='markers', color=~factor(km$cluster))
 ```
 
-When the number of clusters is 2, the 3D plot above shows that the K-means does a fairly good job as what we expected. The main body of two cluster are obvious. Comparing to the plot which colors observations according to `crime`, it seems one cluster stands for `high`, while the other one include all the rest of categories. Despite some observations are clustered into the `high` cluster, they are located much closer to the other cluster in 3D space. It seems that those observations mostly belong to `med_high`. I think the clusering makes sense considering `med_high` observations are logically more close to `high` observations.
+When the number of clusters is 2, the 3D plot above shows that the K-means does a fairly good job as what I expected. The main body of two cluster are obvious. Comparing to the plot which colors observations according to `crime`, it seems one cluster stands for `high`, while the other one include all the rest of categories. Despite some observations are clustered into the `high` cluster, they are located much closer to the other cluster in 3D space. It seems that those observations mostly belong to `med_high`. I think the clusering makes sense considering `med_high` observations are logically more close to `high` observations.
 
 ```{r}
 
