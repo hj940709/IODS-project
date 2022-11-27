@@ -126,7 +126,7 @@ km <- kmeans(boston_scaled, centers = 2)
 pairs(boston_scaled, col = km$cluster)
 ```
 
-The plot above shows how K-means cluster the dataset. Clusters are colored into red and black. It seems K-means works the best on `tax` and `rad`, as there is an obvious separation between two cluster.
+The plot above shows how K-means cluster the dataset. Clusters are colored into red and black. This plot is messy overall but it seems K-means works the best on `tax` and `rad`. Despite there are observations mixed, we can still see there is an obvious separation between two cluster for most of the subplots of these two variables.
 
 
 ## Bonus: Visualize a biplot of LDA based on K-means clustering
