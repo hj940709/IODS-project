@@ -50,7 +50,7 @@ As we can see from the two plots above, their results are quite different. The f
 
 Inspecting the plot, we can see a much clearer picture of the data. `Edu.Exp`, `Edu2.PM`, `GNI` and `Life.Exp` have a very strong positive correlation among them, while they all have a strong negative correlation with both `Mat.Mor` and `Ado.Birth`. `Parli.F` and `Labo.FM` are strongly and positively correlated with each other but not very correlated with the rest of the variables.  This agrees with my previous correlation matrix visualization. 
 
-### interpretation of PCs
+### Interpretation of PCs
 
 <!-- Give your personal interpretations of the first two principal component dimensions based on the biplot drawn after PCA on the standardized human data. (0-2 points)  -->
 
