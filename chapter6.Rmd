@@ -280,6 +280,6 @@ plot_b <- ggplot(BPRSL, aes(x = week, y = Fitted, color = treatment)) +
 ```
 
 
-The plot above shows how well the random intercept and slope model with interaction fits. It is displayed side by side, where the plot of data is on the left side and the fitted model is placed on the right side. The `treatment` is visualized by color and the `subject` is visualized by lifestyle. 
+The plot above shows how well the random intercept and slope model with interaction fits. It is displayed side by side, where the plot of data is on the left side and the fitted model is placed on the right side. The `treatment` is visualized by color and the `subject` is visualized by linestyle. 
 
 We can see there are too many lines cluttered in a very close space for both left and right sides. I suppose we cant tell too much from these two plots. But one obvious thing is that all subjects have their weight decreasing regardless of treatment. 
