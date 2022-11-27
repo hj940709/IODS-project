@@ -26,17 +26,21 @@ colnames(gii) <- c('GII.Rank', 'Country', 'GII', 'Mat.Mor', 'Ado.Birth', 'Parli.
 gii <- mutate(gii, Edu2.FM = gii$Edu2.F / gii$Edu2.M, Labo.FM = gii$Labo.F / gii$Labo.M)
 
 # Join together the two datasets using the variable Country as the identifier. Keep only the countries in both data sets (Hint: inner join). The joined data should have 195 observations and 19 variables. Call the new joined data "human" and save it in your data folder.
-human = inner_join(hd, gii, by = 'Country')
+human <- inner_join(hd, gii, by = 'Country')
 str(human)
 
 write_csv(human, 'human.csv')
 
+# Please note human.csv has been overwritten by the code for assignment 5 below
+# The dimension of human.csv will match the description of Assignment 5, instead of this assignment
 
 
 
 
 
-# Assign 5 below
+# Author: Jue Hou
+# Date: 2022-11-18
+# Description: Assignment 5
 
 # Load the ‘human’ data into R. Explore the structure and the dimensions of the data and describe the dataset briefly, assuming the reader has no previous knowledge of it (this is now close to the reality, since you have named the variables yourself). (0-1 point)
 human <- read_csv('human.csv')

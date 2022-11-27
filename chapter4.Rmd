@@ -179,7 +179,7 @@ km = kmeans(model_predictors, centers = 2)
 plot_ly(x = matrix_product$LD1, y = matrix_product$LD2, z = matrix_product$LD3, type= 'scatter3d', mode='markers', color=~factor(km$cluster))
 ```
 
-When the number of clusters is 2, the 3D plot above shows that the K-means does a fairly good job as what I expected. The main body of two cluster are obvious. Comparing to the plot which colors observations according to `crime`, it seems one cluster stands for `high`, while the other one include all the rest of categories. Despite some observations are clustered into the `high` cluster, they are located much closer to the other cluster in 3D space. It seems that those observations mostly belong to `med_high`. I think the clusering makes sense considering `med_high` observations are logically more close to `high` observations.
+When the number of clusters is 2, the 3D plot above shows that the K-means does a fairly good job as what I expected. The main body of two cluster are obvious. Comparing to the plot which colors observations according to `crime`, it seems one cluster stands for `high`, while the other one include all the rest of categories. Despite some observations are clustered into the `high` cluster, they are located much closer to the other cluster in 3D space. It seems that those observations mostly belong to `med_high`. Clustering may be difficult for those observations.
 
 ```{r}
 
