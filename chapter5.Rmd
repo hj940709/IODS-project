@@ -65,20 +65,20 @@ On the other hand, PC2 seems to be mostly related to female living situations. I
 I select the same columns and visualize them according to the Exercise Set, which means there are 6 variables in my dataset: `Tea`, `How`, `how`, `sugar`, `where`, `lunch`. The data is visualizd below:
 
 ```{r}
-data(tea)
-str(tea)
-
-keep_columns <- c("Tea", "How", "how", "sugar", "where", "lunch")
-tea_time <- select(tea, keep_columns)
-
-summary(tea_time)
-
-pivot_longer(tea_time, cols = everything()) %>% 
+tea <- read.csv("https://raw.githubusercontent.com/KimmoVehkalahti/Helsinki-Open-Data-Science/master/datasets/tea.csv", stringsAsFactors = TRUE)
+glimpse(tea)
+pivot_longer(dplyr::select(tea, -age), cols = everything()) %>% 
   ggplot(aes(value)) + facet_wrap("name", scales = "free") + geom_bar() + theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8))
 ```
 
+The previous plot is a visualization of the `tea` dataset. It is measured with a questionaire on tea. There are 300 observations and 36 variables overall. Except `age`, all variables is in string format. Therefore, `age` is not included in this plot. But as what we can see, there is a `age_O` variable which shows the distribution of age by the range of 15. I think it can serve our purpose here as well.
+
+For the simplicity of the following MCA analysis, I will continue the same set of variables (`Tea`, `How`, `how`, `sugar`, `where`, `lunch`) as the Exercise Set. 
+
 
 ```{r}
+keep_columns <- c("Tea", "How", "how", "sugar", "where", "lunch")
+tea_time <- select(tea, keep_columns)
 mca <- MCA(tea_time, graph = FALSE)
 summary(mca)
 plot(mca, invisible=c("ind"),habillage = "quali")
