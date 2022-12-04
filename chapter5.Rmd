@@ -64,7 +64,7 @@ On the other hand, PC2 seems to be mostly related to female living situations. I
 
 I select the same columns and visualize them according to the Exercise Set, which means there are 6 variables in my dataset: `Tea`, `How`, `how`, `sugar`, `where`, `lunch`. The data is visualizd below:
 
-```{r}
+```{r, fig.height = 15}
 tea <- read.csv("https://raw.githubusercontent.com/KimmoVehkalahti/Helsinki-Open-Data-Science/master/datasets/tea.csv", stringsAsFactors = TRUE)
 glimpse(tea)
 pivot_longer(dplyr::select(tea, -age), cols = everything()) %>% 
